@@ -136,7 +136,18 @@ module.exports = function(grunt) {
 			unit: {
 				configFile: 'karma.conf.js'
 			}
-		}
+		},
+		vulcanize: {
+	    default: {
+	      options: {
+	        csp: true,
+	        strip: true
+	      },
+	      files: {
+	        'public/build.html': 'app/views/polymer/index.html'
+	      }
+	    }
+	  }
 	});
 
 	// Load NPM tasks
@@ -168,4 +179,6 @@ module.exports = function(grunt) {
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+
+	grunt.loadNpmTasks('grunt-vulcanize');
 };

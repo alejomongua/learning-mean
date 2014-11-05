@@ -36,19 +36,23 @@
 	{% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">
 	{% endfor %}
 
-	<!-- HTML5 Shim -->
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+	<link rel="import" href="build.html">
 </head>
 
 <body class="ng-cloak">
-	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
-	<section class="content">
-		<section class="container">
-			{% block content %}{% endblock %}
+	<core-scaffold>
+	  <core-header-panel navigation flex mode="seamed">
+	    <core-toolbar><a href="/">{{title}}</a></core-toolbar>
+	    <core-menu theme="core-light-theme" data-ng-include="'/modules/core/views/header.client.view.html'">
+	    </core-menu>
+	  </core-header-panel>
+	  <div tool>{{title}}</div>
+		<section class="content">
+			<section class="container">
+				{% block content %}{% endblock %}
+			</section>
 		</section>
-	</section>
+	</core-scaffold>
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
